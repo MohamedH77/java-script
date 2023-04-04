@@ -1,9 +1,20 @@
 
 var generateBtn = document.querySelector("#generate");
-var specialcharacters = [ "!", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~", ];
+var specialcharacters = [ "!", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 var letter = ["a","b","c","d","e","f","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var num = ["0","1","2","3","4","5","6","7","8","9",];
+var num = ["0","1","2","3","4","5","6","7","8","9"];
 var users = [""]
+
+
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+generateBtn.addEventListener("click", writePassword);
+
 
 
 function generatePassword() {
@@ -25,34 +36,31 @@ function generatePassword() {
 
     }
     
-    if(upper){
-      users += upper
+    if (upper) {
+      users = users.concat(letter.map(function(x) { return x.toUpperCase(); }));
     }
-    if(lower){
-      users += lower
-    }
-  
-    if(special) {
-      users += special
-    }
-  
-    if(number) {
-      users += number
+    if (lower) {
+      users = users.concat(letter);
     }
     
+    if (special) {
+      users = users.concat(specialcharacters);
+    }
+    
+    if (number) {
+      users = users.concat(num);
+    }
+    
+    var result= "";
 for (var i = 0; i < passLength; i++) {
-  result += users.charAt(Math.floor(Math.random() * users.passLength));
+  result += users.charAt(Math.floor(Math.random() * users.length));
 }
 return result;
 
 }
 
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+function copied() {
+  document.getElementById("password").select();
+  document.execCommand("copy");
+  alert("The password has been copied to your clipboard");
 }
-generateBtn.addEventListener("click", writePassword);
-
