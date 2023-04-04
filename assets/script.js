@@ -28,17 +28,17 @@ function generatePassword() {
     alert("Password most not go byond 128 characters");
     return generatePassword()
   }
-    {
-      var upper= confirm("Include upper case letters?");
-      var lower= confirm("Include lower case letters?");
-      var special= confirm("Include special characters?");
-      var number= confirm("Include numbers?");
 
-    }
-    
+  var upper= confirm("Include upper case letters?");
+  var lower= confirm("Include lower case letters?");
+  var special= confirm("Include special characters?");
+  var number= confirm("Include numbers?");
+
+  
     if (upper) {
       users = users.concat(letter.map(function(x) { return x.toUpperCase(); }));
     }
+
     if (lower) {
       users = users.concat(letter);
     }
@@ -52,12 +52,14 @@ function generatePassword() {
     }
 
     var result= "";
+    console.log(passLength);
+
 for (var i = 0; i < passLength; i++) {
-  result += users.charAt(Math.floor(Math.random() * users.length));
+  result += users[Math.floor(Math.random() * users.length)];
 }
 return result;
-
 }
+
 
 function copied() {
   document.getElementById("password").select();
