@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 var specialcharacters = [ "!", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 var letter = ["a","b","c","d","e","f","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var num = ["0","1","2","3","4","5","6","7","8","9"];
-var users = [""]
+var users = [""];
 
 
 function writePassword() {
@@ -29,10 +29,10 @@ function generatePassword() {
     return generatePassword()
   }
     {
-      var upper= confirm("Include upper case letters?")
-      var lower= confirm("Include lower case letters?")
-      var special= confirm("Include special characters?")
-      var number= confirm("Include numbers?")
+      var upper= confirm("Include upper case letters?");
+      var lower= confirm("Include lower case letters?");
+      var special= confirm("Include special characters?");
+      var number= confirm("Include numbers?");
 
     }
     
@@ -50,7 +50,7 @@ function generatePassword() {
     if (number) {
       users = users.concat(num);
     }
-    
+
     var result= "";
 for (var i = 0; i < passLength; i++) {
   result += users.charAt(Math.floor(Math.random() * users.length));
@@ -63,4 +63,8 @@ function copied() {
   document.getElementById("password").select();
   document.execCommand("copy");
   alert("The password has been copied to your clipboard");
+
 }
+generateBtn.addEventListener("click", copied);
+
+
